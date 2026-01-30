@@ -20,17 +20,22 @@ public class ProductDAO {
         MongoDatabase database = MongoDBUtil.getDatabase();
         collection = database.getCollection("Products");
     }
-    
+
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
-        
-        for (Document doc : collection.find().filter(eq("status", true))) {
-            products.add(documentToProduct(doc));
+
+        try {
+            for (Document doc : collection.find()) {
+                products.add(documentToProduct(doc));
+            }
+            System.out.println("PRODUCT COUNT = " + products.size());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
+
         return products;
     }
-    
+
     public Product getProductById(String id) {
         try {
             Document doc = collection.find(eq("_id", new ObjectId(id))).first();
