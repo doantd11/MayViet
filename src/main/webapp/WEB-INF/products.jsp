@@ -264,7 +264,7 @@
 
                                 <img class="product-image"
                                      src="${pageContext.request.contextPath}/images/${product.mainImage}"
-                                     onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+                                     >
 
                                 <div class="product-info">
 
@@ -279,6 +279,7 @@
 
                                     <h3 class="product-name">${product.productName}</h3>
                                     <p class="product-description">${product.description}</p>
+                                    <p>${pageContext.request.contextPath}</p>
 
                                     <div class="product-price">
                                         <span class="discount-price">
